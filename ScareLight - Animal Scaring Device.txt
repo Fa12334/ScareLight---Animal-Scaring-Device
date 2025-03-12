@@ -1,0 +1,34 @@
+int ldr = 7;
+int led1 = 13; // First LED
+int led2 = 12; // Second LED
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ldr, INPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+}
+
+void loop() {
+  int ldrState = digitalRead(ldr); // Read the state of the LDR
+
+  if (ldrState == LOW) { // If LDR is exposed to light
+    digitalWrite(led1, HIGH); // Turn on first LED
+    delay(50); // Delay for pattern 1
+    digitalWrite(led1, LOW); // Turn off first LED
+    delay(50); // Delay for pattern 1
+
+    digitalWrite(led1, HIGH); // Turn on first LED
+    delay(10); // Delay for pattern 2
+    digitalWrite(led1, LOW); // Turn off first LED
+    delay(10); // Delay for pattern 2
+
+    digitalWrite(led2, HIGH); // Turn on second LED
+    delay(50); // Delay for pattern 3
+    digitalWrite(led2, LOW); // Turn off second LED
+    delay(50); // Delay for pattern 3
+  } else {
+    digitalWrite(led1, LOW); // If LDR is not exposed to light, turn off first LED
+    digitalWrite(led2, LOW); // If LDR is not exposed to light, turn off second LED
+  }
+}
